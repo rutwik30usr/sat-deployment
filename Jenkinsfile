@@ -29,9 +29,7 @@ pipeline {
 
     stage('Terraform Init') {
       steps {
-        dir('terraform') {
-          sh 'terraform init'
-        }
+        sh 'terraform init'
       }
     }
 
@@ -41,19 +39,17 @@ pipeline {
           string(credentialsId: 'AWS_ACCESS_KEY', variable: 'AWS_ACCESS_KEY_ID'),
           string(credentialsId: 'AWS_SECRET_KEY', variable: 'AWS_SECRET_ACCESS_KEY')
         ]) {
-          dir('terraform') {
-            script {
-              if (params.ACTION == 'plan') {
-                sh "terraform plan -var-file=${params.ENV}.tfvars"
-              }
+          script {
+            if (params.ACTION == 'plan') {
+              sh "terraform plan -var-file=${params.ENV}.tfvars"
+            }
 
-              if (params.ACTION == 'apply') {
-                sh "terraform apply -auto-approve -var-file=${params.ENV}.tfvars"
-              }
+            if (params.ACTION == 'apply') {
+              sh "terraform apply -auto-approve -var-file=${params.ENV}.tfvars"
+            }
 
-              if (params.ACTION == 'destroy') {
-                sh "terraform destroy -auto-approve -var-file=${params.ENV}.tfvars"
-              }
+            if (params.ACTION == 'destroy') {
+              sh "terraform destroy -auto-approve -var-file=${params.ENV}.tfvars"
             }
           }
         }
