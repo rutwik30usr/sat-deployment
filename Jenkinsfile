@@ -23,7 +23,7 @@ pipeline {
 
     stage('Checkout GitHub Repo') {
       steps {
-        git url: 'https://github.com/rutwik30usr/sat-deployment.git'
+        git branch: 'main', url: 'https://github.com/rutwik30usr/sat-deployment.git'
       }
     }
 
