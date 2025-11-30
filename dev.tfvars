@@ -1,5 +1,5 @@
 region        = "ap-south-1"
-ami           = "ami-0f5ee92e2d63afc18"
-instance_type = "t2.micro"
+ami           = "ami-0d176f79571d18a8f"
+instance_type = "t3.micro"
 environment   = "dev"
 key_name      = "aws-key"
